@@ -8,10 +8,13 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      color: #333;
     }
 
     h1, h3 {
       text-align: center;
+      color: #fff;
     }
 
     .category-container {
@@ -27,16 +30,16 @@
       width: 80%;
       margin: 10px 0;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #fff;
       border-radius: 10px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
     }
 
-    .action-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
+    .category-item:hover {
+      transform: scale(1.05);
     }
 
     button {
@@ -47,6 +50,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
     button:hover {
@@ -69,6 +73,43 @@
     #hasilPerhitungan {
       margin-top: 20px;
     }
+
+    /* Input styling */
+    input {
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
+      transition: border-color 0.3s ease;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    #waButton {
+      padding: 12px 20px;
+      background-color: #25d366;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #waButton:hover {
+      background-color: #1ebd57;
+    }
+
   </style>
 </head>
 <body>
@@ -195,7 +236,7 @@
 
       var totalHarga = jumlahBarang * hargaPerBarang;
       var keuntungan = totalHarga - modal;
-
+      
       document.getElementById('hasilPerhitungan').innerHTML = `
         <p>Total Harga: Rp${totalHarga}</p>
         <p>Keuntungan: Rp${keuntungan}</p>
@@ -204,12 +245,12 @@
       // Tampilkan tombol WhatsApp
       document.getElementById('waButton').classList.remove('hidden');
       document.getElementById('waButton').onclick = function() {
-        kirimWhatsApp(totalHarga);
+        kirimWhatsApp(totalHarga, keuntungan);
       };
     }
 
-    function kirimWhatsApp(totalHarga) {
-      var pesan = `Halo, saya ingin memesan ${produkTerpilih}. Total harga: Rp${totalHarga}.`;
+    function kirimWhatsApp(totalHarga, keuntungan) {
+      var pesan = `Halo, saya ingin memesan ${produkTerpilih}. Total harga: Rp${totalHarga}. Keuntungan: Rp${keuntungan}.`;
       var nomorWhatsApp = '6282173067671'; // Nomor WhatsApp yang dituju
       var url = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
       window.open(url, '_blank');
@@ -227,3 +268,4 @@
 
 </body>
 </html>
+      
