@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Nilai Ekonomi Sampah dan Pembelian Produk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .order {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .order button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .order button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Nilai Ekonomi Sampah dan Pembelian Produk</h1>
+
+        <!-- Pilihan jenis sampah -->
+        <div class="form-group">
+            <label for="jenisSampah">Pilih Jenis Sampah:</label>
+            <select id="jenisSampah">
+                <option value="plastik">Plastik</option>
+                <option value="kain">Kain</option>
+                <option value="logam">Logam</option>
+                <option value="kayu">Ranting/Kayu</option>
+                <option value="karet">Karet</option>
+            </select>
+        </div>
+
+        <!-- Input berat sampah -->
+        <div class="form-group">
+            <label for="berat">Berat Sampah (kg):</label>
+            <input type="number" id="berat" placeholder="Masukkan berat dalam kg" required>
+        </div>
+
+        <!-- Input harga per kg -->
+        <div class="form-group">
+            <label for="hargaPerKg">Harga per Kg (Rp):</label>
+            <input type="number" id="hargaPerKg" placeholder="Masukkan harga per kg" required>
+        </div>
+
+        <!-- Hasil perhitungan nilai ekonomi -->
+        <div class="result">
+            <h2>Total Nilai Ekonomi:</h2>
+            <p id="hasil">Masukkan data untuk melihat hasil</p>
+        </div>
+
+        <!-- Bagian pemesanan produk -->
+        <div class="order">
+            <p>Beli produk Celengan daur ulang (Rp 40.000):</p>
+            <a id="whatsappLink" href="" target="_blank">
+                <button>Beli via WhatsApp</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const beratInput = document.getElementById('berat');
+        const hargaInput = document.getElementById('hargaPerKg');
+        const jenisSampah = document.getElementById('jenisSampah');
+        const hasilOutput = document.getElementById('hasil');
+        const whatsappLink = document.getElementById('whatsappLink');
+        const nomorWhatsapp = '082289768007'; // Nomor WhatsApp untuk pemesanan
+
+        // Fungsi untuk menghitung nilai ekonomi
+        function hitungNilaiEkonomi() {
+            const berat = beratInput.value;
+            const hargaPerKg = hargaInput.value;
+            const jenis = jenisSampah.value;
+
+            if (berat && hargaPerKg) {
+                const totalNilaiEkonomi = berat * hargaPerKg;
+                hasilOutput.innerHTML = "Rp " + totalNilaiEkonomi.toLocaleString();
+
+                // Buat link untuk pesan via WhatsApp dengan rincian
+                const pesan = `Halo, saya ingin membeli produk Celengan seharga Rp 40.000. Saya memiliki sampah jenis ${jenis} dengan berat ${berat} kg dan nilai ekonomi sebesar Rp ${totalNilaiEkonomi.toLocaleString()}.`;
+                whatsappLink.href = `https://wa.me/${nomorWhatsapp}?text=${encodeURIComponent(pesan)}`;
+            } else {
+                hasilOutput.innerHTML = "Masukkan data yang lengkap untuk melihat hasil.";
+            }
+        }
+
+        // Event listener untuk menghitung ketika input berubah
+        beratInput.addEventListener('input', hitungNilaiEkonomi);
+        hargaInput.addEventListener('input', hitungNilaiEkonomi);
+        jenisSampah.addEventListener('change', hitungNilaiEkonomi);
+    </script>
+</body>
+</html>
