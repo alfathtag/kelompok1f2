@@ -74,7 +74,6 @@
       margin-top: 20px;
     }
 
-    /* Input styling */
     input {
       padding: 10px;
       width: 80%;
@@ -119,16 +118,8 @@
   <!-- Kategori Barang Bekas -->
   <div id="kategori" class="category-container">
     <div class="category-item">
-      <span>Kertas/Karton</span>
-      <button onclick="pilihKategori('Kertas/Karton')">Pilih</button>
-    </div>
-    <div class="category-item">
       <span>Plastik</span>
       <button onclick="pilihKategori('Plastik')">Pilih</button>
-    </div>
-    <div class="category-item">
-      <span>Logam</span>
-      <button onclick="pilihKategori('Logam')">Pilih</button>
     </div>
     <div class="category-item">
       <span>Kain</span>
@@ -137,10 +128,6 @@
     <div class="category-item">
       <span>Karet/Kulit</span>
       <button onclick="pilihKategori('Karet/Kulit')">Pilih</button>
-    </div>
-    <div class="category-item">
-      <span>Kayu/Ranting</span>
-      <button onclick="pilihKategori('Kayu/Ranting')">Pilih</button>
     </div>
   </div>
 
@@ -187,12 +174,9 @@
     var hargaTerpilih = 0;
 
     const produkMap = {
-      'Kertas/Karton': { nama: 'Bingkai Foto', harga: 30000 },
       'Plastik': { nama: 'Pot Tanaman', harga: 25000 },
-      'Logam': { nama: 'Gantungan Kunci', harga: 20000 },
       'Kain': { nama: 'Tas Serut', harga: 50000 },
-      'Karet/Kulit': { nama: 'Gelang Karet', harga: 10000 },
-      'Kayu/Ranting': { nama: 'Tempat Alat Tulis', harga: 40000 }
+      'Karet/Kulit': { nama: 'Gelang Karet', harga: 10000 }
     };
 
     function pilihKategori(kategori) {
@@ -242,7 +226,6 @@
         <p>Keuntungan: Rp${keuntungan}</p>
       `;
 
-      // Tampilkan tombol WhatsApp
       document.getElementById('waButton').classList.remove('hidden');
       document.getElementById('waButton').onclick = function() {
         kirimWhatsApp(totalHarga, keuntungan);
@@ -259,13 +242,12 @@
     function undo() {
       document.getElementById('kategori').classList.remove('hidden');
       document.getElementById('menuTindakan').classList.add('hidden');
-      document.getElementById('kalkulator').classList.add('hidden');
+      
       document.getElementById('productDisplay').classList.add('hidden');
-      document.getElementById('hasilPerhitungan').innerHTML = '';
-      document.getElementById('waButton').classList.add('hidden');
-    }
-  </script>
+document.getElementById('hasilPerhitungan').innerHTML = '';
+document.getElementById('waButton').classList.add('hidden');
+}
+</script>
 
 </body>
 </html>
-      
